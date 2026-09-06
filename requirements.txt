@@ -1,0 +1,16 @@
+# Base — đủ để chạy `nao-agent serve` (stdio, local).
+fastmcp>=2.0.0
+
+# Bỏ comment các dòng dưới tuỳ chế độ bạn cần:
+
+# `nao-agent task ...` (CLI gọi OpenAI trực tiếp)
+# openai>=1.40.0
+
+# `nao-agent serve --http` (legacy MCP-over-HTTP + REST /api/*)
+# fastapi>=0.110
+# uvicorn>=0.29
+# requests>=2.31
+
+# HF_SPACE_MODE=1 (điều khiển 1 Hugging Face Space từ xa)
+# huggingface_hub>=0.23
+# requests>=2.31

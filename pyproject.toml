@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nao-coding-agent"
+version = "1.0.0"
+description = "Coding agent chạy local qua MCP (stdio) — đọc/sửa/xóa file, chạy terminal — với chế độ CLI (OpenAI trực tiếp) và HTTP/HF Space tuỳ chọn."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+dependencies = [
+    "fastmcp>=2.0.0",
+]
+
+[project.optional-dependencies]
+# Cần khi chạy `nao-agent task ...` (CLI gọi OpenAI trực tiếp).
+cli = ["openai>=1.40.0"]
+# Cần khi chạy `nao-agent serve --http` (legacy MCP-over-HTTP + REST /api/*).
+http = ["fastapi>=0.110", "uvicorn>=0.29", "requests>=2.31"]
+# Cần khi bật HF_SPACE_MODE=1 (điều khiển 1 Hugging Face Space từ xa).
+space = ["huggingface_hub>=0.23", "requests>=2.31"]
+all = ["nao-coding-agent[cli,http,space]"]
+
+[project.scripts]
+nao-agent = "nao_agent.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["nao_agent*"]
